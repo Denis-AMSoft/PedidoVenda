@@ -1,0 +1,80 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Contrato de Treinamento</ui:define>
+ <ui:define name="corpo">
+	<h1>Cadastro de Contrato de Treinamento</h1>
+
+	<h:form id="frm">
+		<p:tabView activeIndex="0" orientation="top" effect="fade"
+			effectDuration="fast">
+			<p:tab title="Dados Principais" disabled="false">
+				<h:panelGrid columns="2" cellpadding="4">
+					<p:outputLabel value="Razao Social" for="razaoSocial" />
+					<p:inputText id="razaoSocial" size="50" />
+
+					<p:outputLabel value="CNPJ" for="cnpj" />
+					<p:inputMask id="cnpj" size="15" maxlength="15"
+						mask="999.999.999/9999.99" required="true" />
+
+					<p:outputLabel value="Cidade do Contrato" for="cidade" />
+					<p:inputText id="cidade" size="50" />
+
+					<p:outputLabel value="Modalidade" for="modalidade" />
+					<p:selectOneRadio id="modalidade" required="true"
+						styleClass="sem-bordas">
+						<f:selectItem itemLabel="EAD" itemValue="ead" />
+						<f:selectItem itemLabel="Presencial" itemValue="presencial" />
+					</p:selectOneRadio>
+
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Contrato">
+				<h:panelGrid columns="2" cellpadding="4">
+					<p:outputLabel value="Data do Contrato" for="dataContrato" />
+					<p:calendar id="dataContrato" required="true" pattern="dd/MM/yyyy"
+						readonlyInput="true" navigator="false" pages="1" mode="popup"
+						locale="pt" />
+
+					<p:outputLabel value="Valor Unitário" for="valorUnitario" />
+				<p:inputText id="valorUnitario" size="20" maxlength="20" styleClass="moeda"/>
+				
+
+
+
+
+
+
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Cursos">
+				<h:panelGrid columns="2" cellpadding="4">
+					<p:outputLabel for="cursos" />
+					<p:selectManyCheckbox id="cursos" required="true"
+						styleClass="sem-bordas" layout="pageDirection">
+						<f:selectItem itemLabel="Fundamentos Java e Orientação a Objetos"
+							itemValue="1" />
+						<f:selectItem itemLabel="Desenvolvimento Web com JSF 2"
+							itemValue="2" />
+						<f:selectItem
+							itemLabel="Persistência de Dados com JPA 2 e hibernate"
+							itemValue="3" />
+						<f:selectItem itemLabel="SRUM" itemValue="4" />
+					</p:selectManyCheckbox>
+
+
+
+
+
+				</h:panelGrid>
+			</p:tab>
+		</p:tabView>
+		<p:commandButton id="cadastrar" value="cadastrar" />
+	</h:form>
+
+   </ui:define>
+</ui:composition>

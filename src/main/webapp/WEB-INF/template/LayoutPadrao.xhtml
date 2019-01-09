@@ -54,7 +54,7 @@
 
 	<script>
 			function configurarMoeda() {
-				$(".moeda").maskMoney({ decimal: ",", thousands: ".", allowZero: true });
+				$(".moeda").maskMoney({showSymbol:true, symbol:"R$", decimal: ",", thousands: ".", allowZero: true });
 			}
 			
 			$(document).ready(function() {
