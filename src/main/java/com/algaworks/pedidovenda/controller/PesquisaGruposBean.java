@@ -8,19 +8,19 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
-public class PesquisaPedidosBean {
+public class PesquisaGruposBean {
 
-	private List<Integer> pedidosFiltrados;
+	private List<Integer> gruposFiltrados;
 	
-	public PesquisaPedidosBean() {
-		pedidosFiltrados = new ArrayList<>();
+	public PesquisaGruposBean() {
+		gruposFiltrados = new ArrayList<>();
 		for (int i = 0; i < 50; i++) {
-			pedidosFiltrados.add(i);
+			gruposFiltrados.add(i);
 		}
 	}
 
-	public List<Integer> getPedidosFiltrados() {
-		return pedidosFiltrados;
+	public List<Integer> getGruposFiltrados() {
+		return gruposFiltrados;
 	}
 	
 }

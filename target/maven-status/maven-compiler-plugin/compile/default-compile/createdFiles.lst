@@ -1,2 +1,7 @@
-com\algaworks\pedidovenda\controller\PesquisaProdutosBean.class
+com\algaworks\pedidovenda\controller\PesquisaClientesBean.class
 com\algaworks\pedidovenda\controller\PesquisaPedidosBean.class
+com\algaworks\pedidovenda\controller\PesquisaProdutosBean.class
+com\algaworks\pedidovenda\controller\PesquisaEnderecosBean.class
+com\algaworks\pedidovenda\controller\PesquisaGruposBean.class
+com\algaworks\pedidovenda\controller\PesquisaUsuariosBean.class
+com\algaworks\pedidovenda\controller\CadastroPedidoBean.class

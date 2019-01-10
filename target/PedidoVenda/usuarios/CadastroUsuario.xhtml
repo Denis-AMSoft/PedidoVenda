@@ -5,10 +5,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Novo Cliente</ui:define>
+	<ui:define name="titulo">Novo Usuario</ui:define>
 
 	<ui:define name="corpo">
-		<h1>Novo Cliente</h1>
+		<h:form>
+		<h1>Novo Usuario</h1>
 
 
 		<p:toolbar style="margin-top: 20px">
@@ -17,7 +18,7 @@
 				<p:commandButton value="Salvar" id="botaoSalvar" />
 			</p:toolbarGroup>
 			<p:toolbarGroup align="right">
-				<p:button value="Pesquisa" />
+				<p:button value="Pesquisa" outcome="/usuarios/PesquisaUsuario" />
 			</p:toolbarGroup>
 		</p:toolbar>
 
@@ -28,14 +29,17 @@
 
 			<p:outputLabel value="e-mail" for="email" />
 			<p:inputText id="email" size="50" maxlength="50" />
-			
+
 			<p:outputLabel value="Senha" for="senha" />
-			<p:password id="senha" required="true" 	/>
+			<p:password id="senha" required="true" />
 
 
 
 		</p:panelGrid>
+		<p:separator />
+			
+			<ui:include src="/WEB-INF/template/usuarios/AdicionarGrupo.xhtml" />
 
-
+		</h:form>
 	</ui:define>
 </ui:composition>

@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:dataTable id="usuarioTable" value="#{pesquisaUsuariosBean.usuariosFiltrados}" var="usuario"
+	    		style="margin-top: 20px" emptyMessage="Nenhum produto encontrado." rows="20"
+	    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+		<p:column headerText="Nome">
+			<h:outputText value="João Alfredo" />
+		</p:column>
+		<p:column headerText="E-MAIL"
+			style="text-align: center; width: 100px">
+			<h:outputText value="sdfjsdjkfh@asd.com.br" />
+		</p:column>
+		<p:column style="width: 100px; text-align: center">
+			<p:button icon="ui-icon-pencil" title="Editar" />
+			<p:commandButton icon="ui-icon-trash" title="Excluir" />
+		</p:column>
+	</p:dataTable>
+
+</ui:composition>
