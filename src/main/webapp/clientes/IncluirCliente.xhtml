@@ -6,10 +6,12 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
+
 	
 </h:head>
 <h:body>
+
+
 <script>
 	function tratarInclusaoProduto(args) {
 		if (!args.validationFailed) {
@@ -17,12 +19,12 @@
 		}
 	}
 	</script>
+	
 	<h:form id="frm">
 
 		<p:button value="Adicionar Cliente"
 			onclick="inclusaoClienteDialog.show(); return false;" />
 	
-		
 		<p:dialog header="Inclusão de Cliente" widgetVar="inclusaoClienteDialog"
 			modal="true" resizable="false">
 			<h:panelGroup id="inclusaoPanel">
@@ -33,16 +35,42 @@
 					<p:inputText value="#{clienteBean.nome}" required="true"
 						requiredMessage="Informe o nome do cliente." />
 					<p:outputLabel value="Telefone" />
-					<p:inputText value="#{clienteBean.telefone}" required="true"
-						requiredMessage="Informe o nome do telefone." />	
+					<p:inputText  value="#{clienteBean.telefone}"  maxlength="11" required="true"
+						requiredMessage="Informe o Telefone do cliente."
+						oncomplete="tratarInclusaoProduto(args)" />
 						
 				</h:panelGrid>
 				
 				<p:commandButton value="Incluir" action="#{clienteBean.incluirCliente}"
-					update="inclusaoPanel" 
-					oncomplete="tratarInclusaoProduto(args)" />
+					update="clientesTable inclusaoPanel" />
 			</h:panelGroup>
 		</p:dialog>
+		
+		
+		
+		<p:dataTable value="#{clienteBean.clientes}" var="cliente" id="clientesTable"
+				emptyMessage="Não existem clientes.">
+			<p:column headerText="Nome">
+				<h:outputText value="#{cliente.nome}"/>
+			</p:column>
+			<p:column headerText="Telefone">
+				<h:outputText value="#{cliente.telefone}" mask="(99) 9 9999-9999"/>
+			</p:column>
+			<p:column style="width: 100px; text-align: center">
+			<p:commandButton icon="ui-icon-trash" oncomplete="confirmacao.show()">
+            		<f:setPropertyActionListener  value="#{cliente}" target="#{clienteBean.selectedCliente}" />
+            	</p:commandButton>
+		</p:column>
+		</p:dataTable>
+		
+		<p:confirmDialog header="Exclusão de Cliente" 
+			message="Tem certeza que deseja excluir o Cliente?"
+			widgetVar="confirmacao">
+			
+			<p:commandButton value="Sim" update="clientesTable" oncomplete="confirmacao.hide()" action="#{clienteBean.excluirCliente}"/>
+			<p:button value="Não" onclick="confirmacao.hide(); return false;" />
+			
+		</p:confirmDialog>
 
 	</h:form>
 </h:body>
