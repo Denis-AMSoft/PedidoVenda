@@ -4,14 +4,64 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:button value="Adicionar Endereço" />
+	<p:button value="Adicionar Endereço"
+		onclick="inclusaoEnderecoDialog.show(); return false;" />
+
+	<!-- Dialog de Inclusao de endereco -->
+	<p:dialog header="Inclusão de produto"
+		widgetVar="inclusaoEnderecoDialog" modal="true" resizable="false">
+		<h:panelGroup id="inclusaoPanel">
+			<p:messages />
+
+			<h:panelGrid columns="4">
+
+
+				<p:outputLabel value="Logradouro" />
+				<p:inputText />
+				<p:outputLabel />
+				<p:outputLabel />
+
+				<p:outputLabel value="Número" />
+				<p:inputText />
+				<p:outputLabel />
+				<p:outputLabel />
+
+				<p:outputLabel value="Complemento" />
+				<p:inputText />
+				<p:outputLabel />
+				<p:outputLabel />
+
+				<p:outputLabel value="CEP" />
+				<p:inputMask mask="99999-999" />
+				<p:outputLabel />
+				<p:outputLabel />
+
+				<p:outputLabel value="Cidade" />
+				<p:inputText />
+				<p:outputLabel value="UF" />
+				<p:inputText size="2" maxlength="2" />
+
+
+
+			</h:panelGrid>
+
+			<p:separator />
+
+			<p:commandButton value="Incluir" />
+		</h:panelGroup>
+	</p:dialog>
+
+
+
+
+
 
 	<p:dataTable id="enderecosTable"
 		value="#{pesquisaEnderecosBean.enderecosFiltrados}" var="endereco"
 		style="margin-top: 20px" emptyMessage="Nenhum endereco encontrado."
 		rows="20" paginator="true" paginatorAlwaysVisible="false"
 		paginatorPosition="bottom">
-		<p:column headerText="Logradouro" >
+		<p:column headerText="Logradouro">
 			<h:outputText value="Rua: das Camelhas" />
 		</p:column>
 		<p:column headerText="Número" style="text-align: center; width: 100px">
@@ -29,8 +79,16 @@
 		</p:column>
 		<p:column style="width: 100px; text-align: center">
 			<p:button icon="ui-icon-pencil" title="Editar" />
-			<p:commandButton icon="ui-icon-trash" title="Excluir" />
+			<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confirmacaoExclusao.show()" />
 		</p:column>
 	</p:dataTable>
+
+	<p:confirmDialog header="Exclusão"
+		message="Tem certeza que deseja excluiro?"
+		widgetVar="confirmacaoExclusao">
+		<p:button value="Não"
+			onclick="confirmacaoExclusao.hide(); return false;" />
+		<p:commandButton value="Sim" oncomplete="confirmacaoExclusao.hide();" />
+	</p:confirmDialog>
 
 </ui:composition>

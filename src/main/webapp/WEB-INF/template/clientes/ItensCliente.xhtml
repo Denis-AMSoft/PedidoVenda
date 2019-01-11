@@ -4,15 +4,17 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:dataTable id="clienteTable" value="#{pesquisaClientesBean.clientesFiltrados}" var="cliente"
-	    		style="margin-top: 20px" emptyMessage="Nenhum produto encontrado." rows="20"
-	    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+	<p:dataTable id="clienteTable"
+		value="#{pesquisaClientesBean.clientesFiltrados}" var="cliente"
+		style="margin-top: 20px" emptyMessage="Nenhum produto encontrado."
+		rows="20" paginator="true" paginatorAlwaysVisible="false"
+		paginatorPosition="bottom">
 
 		<p:column headerText="Nome">
 			<h:outputText value="João Alfredo" />
 		</p:column>
-		<p:column headerText="Tipo" >
-		<h:outputText value="Fisíca" />
+		<p:column headerText="Tipo">
+			<h:outputText value="Fisíca" />
 		</p:column>
 		<p:column headerText="CPF / CNPJ"
 			style="text-align: center; width: 100px">
@@ -20,8 +22,16 @@
 		</p:column>
 		<p:column style="width: 100px; text-align: center">
 			<p:button icon="ui-icon-pencil" title="Editar" />
-			<p:commandButton icon="ui-icon-trash" title="Excluir" />
+			<p:commandButton icon="ui-icon-trash" title="Excluir"  oncomplete="confirmacaoExclusao.show()" />
 		</p:column>
 	</p:dataTable>
+
+	<p:confirmDialog header="Exclusão"
+		message="Tem certeza que deseja excluir?"
+		widgetVar="confirmacaoExclusao">
+		<p:button value="Não"
+			onclick="confirmacaoExclusao.hide(); return false;" />
+		<p:commandButton value="Sim" oncomplete="confirmacaoExclusao.hide();" />
+	</p:confirmDialog>
 
 </ui:composition>

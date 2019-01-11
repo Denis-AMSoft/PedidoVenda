@@ -25,8 +25,17 @@
 			<h:outputText value="Admin" />
 		</p:column>
 		<p:column style="width: 100px; text-align: center">
-			<p:commandButton icon="ui-icon-trash" title="Excluir" />
+			<p:commandButton icon="ui-icon-trash" title="Excluir"
+				oncomplete="confirmacaoExclusao.show()" />
 		</p:column>
 	</p:dataTable>
+
+	<p:confirmDialog header="Exclusão"
+		message="Tem certeza que deseja excluiro?"
+		widgetVar="confirmacaoExclusao">
+		<p:button value="Não"
+			onclick="confirmacaoExclusao.hide(); return false;" />
+		<p:commandButton value="Sim" oncomplete="confirmacaoExclusao.hide();" />
+	</p:confirmDialog>
 
 </ui:composition>
